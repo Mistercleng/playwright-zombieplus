@@ -1,9 +1,9 @@
 import { test } from '../support';
 
-test('should login as admin', async ({ page, login, movies }) => {
+test('should login as admin', async ({ page, login }) => {
     await login.visit()
     await login.submit('admin@zombieplus.com', 'pwd123')
-    await movies.isLoggedIn()
+    await login.isLoggedIn('Admin')
 })
 
 test('should not login with incorrect password', async ({ page, login, toast}) => {

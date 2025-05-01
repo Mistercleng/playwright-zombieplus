@@ -1,10 +1,16 @@
 import { expect } from "@playwright/test";
 
-export class LoginPage {
+export class Login {
     page: any;
     
     constructor(page){
         this.page = page;
+    }
+
+    async do(email,password,username){
+        this.visit()
+        this.submit(email,password)
+        this.isLoggedIn(username)
     }
 
     async visit(){
@@ -23,5 +29,10 @@ export class LoginPage {
     async alertHaqveText(text){
         const alert = this.page.locator('span[class$=alert]')
         await expect(alert).toHaveText(text)
+    }
+
+    async isLoggedIn(usename) {
+        const loggedUser = this.page.locator('.logged-user')
+        await expect(loggedUser).toHaveText(`Olá, ${usename}`)
     }
 }

@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
 
-export class LandingPage{
+export class Leads {
     page: any;
 
     constructor(page){
