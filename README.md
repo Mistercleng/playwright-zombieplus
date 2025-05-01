@@ -1,63 +1,52 @@
 ![poster](https://raw.githubusercontent.com/qaxperience/thumbnails/main/playwright-zombie.png)
 
-## 🤘 Sobre
+##  About
 
-Repositório do projeto de testes automatizados do sistema Zombie Plus, construído no curso Playwright Zombie Edition! O Playwright é uma ferramenta de código aberto desenvolvida pela Microsoft que revoluciona a automação de testes em sistemas web, oferecendo uma abordagem eficaz e altamente confiável.
+This is the automated testing project repository for the Zombie Plus system, developed as part of the Playwright Zombie Edition course.
 
-## 💻 Tecnologias
+Playwright is a powerful open-source testing framework created by Microsoft that is transforming the way we automate web applications. It enables fast, reliable, and highly maintainable end-to-end tests across modern browsers such as Chromium, Firefox, and WebKit.
+
+## Throughout the course, you will learn how to:
+- Set up Playwright from scratch in a real-world Node.js project
+- Write reliable and expressive tests using Playwright Test
+- Interact with web elements via locators, assertions, and custom selectors
+- Work with dynamic waits and handle asynchronous UI updates effectively
+- Structure your project using the Page Object Model (POM) design pattern
+- Create reusable test flows and helper utilities
+- Run tests in parallel and isolate test contexts
+- Automate browser actions such as file uploads, downloads, and multi-tab interactions
+- Execute tests across multiple browsers and devices
+- Integrate with CI/CD pipelines for automated test execution
+- Use Playwright’s trace viewer and debugging tools for efficient troubleshooting
+
+By the end of the course, you’ll have a solid understanding of how to build and scale a robust web automation test suite using Playwright, and you'll have a complete working example project (Zombie Plus) to refer to.
+
+## 💻 Tech
 - Node.js
 - Playwright
 - Javascript
 - Faker
 - PostgreSQL
 
-## 🤖 Como executar
+## 🤖 How to execute
 
-1. Clonar o repositório, instalar as dependências
+1. Clone repository and install dependencies
 ```
 npm install
 ```
 
-2. Executar testes em Headless
+2. Run Headless mode
 ```
 npx playwright test 
 ```
 
-3. Executar ver o relatório dos testes
+3. Run and show report
 ```
 npx playwright show-report
 ```
 
 <hr>
-Curso disponível em https://qaxperience.com
 
-
-
-sudo docker run -p 5432:5432 -v /tmp/database:/var/lib/postgresql/data -e POSTGRES_PASSWORD=1234 -d postgres
-sudo docker container ls 
-sudo docker exec -it ccd3c2fc50b9 bash
-
-psql -h localhost -U postgres
-
-CREATE DATABASE dbname;
-
-get conenction information
- \conninfo
-
-get use information
-\du
-
-list data bases
-\dt
-
-list tables
-\l
-
-connect to database
- \c dbname
-
-
-
-set keyboar color 
-sudo brightnessctl --device='dell::kbd_backlight' set 1
+Couser available in https://qaxperience.com
+and Udemy
 
