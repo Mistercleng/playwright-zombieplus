@@ -46,7 +46,6 @@ npx playwright show-report
 ```
 
 <hr>
-
 Couser available in https://qaxperience.com
 and Udemy
 
