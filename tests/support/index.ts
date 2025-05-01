@@ -14,16 +14,15 @@ type PlayFixtures = {
   movies: MoviesPage
 }
 
+
 const test = base.extend<PlayFixtures>({
   page: async ({ page }, use) => {
-   
-    await use({
-        ...page,
-        landing: new LandingPage(page),
-        login: new LoginPage(page),
-        toast: new Toast(page),
-        movies: new MoviesPage(page)
-    })
+    const context = page
+     context['planding'] = new LandingPage(page),
+     context['plogin'] = new LoginPage(page),
+     context['ptoast'] = new Toast(page),
+     context['pmovies'] = new MoviesPage(page)
+    await use(context)
   }
 })
 
