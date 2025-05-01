@@ -2,17 +2,32 @@ import { test } from '../support';
 
 import { executeSQL } from '../support/database';
 
-import data  from '../support/fixtures/movies.json'
+import data from '../support/fixtures/movies.json'
 
 
-test('should add a ne movie', async({page})=> {
+test('should add a new movie', async ({ page, movies, login, toast}) => {
 
-    const movie = data.create
-    executeSQL(`DELETE FROM movies WHERE title='${movie.title}';`)
-    await page.login.visit()
-    await page.login.submit('admin@zombieplus.com','pwd123')
-    await page.movies.isLoggedIn()
-    await page.movies.create(movie.title, movie.overview, movie.company, movie.release_year)
-    await page.toast.haveText('UhullCadastro realizado com sucesso!')
+  const movie = data.create
+  executeSQL(`DELETE FROM movies WHERE title='${movie.title}';`)
+  await login.visit()
+  await login.submit('admin@zombieplus.com', 'pwd123')
+  await movies.isLoggedIn()
+  await movies.create(movie.title, movie.overview, movie.company, movie.release_year)
+  await toast.haveText('UhullCadastro realizado com sucesso!')
 
 })
+
+test('should not add a new movie when the required fields are not fill', async ({ page, login, movies}) => {
+  await login.visit()
+  await login.submit('admin@zombieplus.com', 'pwd123')
+  await movies.isLoggedIn()
+  await movies.goForm()
+  await movies.submit()
+  await movies.alertHaveText([
+    'Por favor, informe o título.',
+    'Por favor, informe a sinopse.',
+    'Por favor, informe a empresa distribuidora.',
+    'Por favor, informe o ano de lançamento.'
+  ])
+
+})  

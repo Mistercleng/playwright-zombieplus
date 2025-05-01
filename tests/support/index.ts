@@ -1,29 +1,31 @@
-// fixtures.ts
-import { test as base } from '@playwright/test'
+import { test as base, Page } from '@playwright/test';
 
 import { LandingPage } from '../pages/LandingPage';
 import { LoginPage } from '../pages/LoginPage';
-import { Toast } from '../pages/Components'
-import { MoviesPage } from '../pages/MoviesPage'
+import { Toast } from '../pages/Components';
+import { MoviesPage } from '../pages/MoviesPage';
 
 type PlayFixtures = {
-  page: any,
-  landing: LandingPage,
-  login: LoginPage,
-  toast: Toast,
-  movies: MoviesPage
-}
+  landing: LandingPage;
+  login: LoginPage;
+  toast: Toast;
+  movies: MoviesPage;
+};
 
-
+// Define fixtures separately instead of mutating `page`
 const test = base.extend<PlayFixtures>({
-  page: async ({ page }, use) => {
-    const context = page
-     context['planding'] = new LandingPage(page),
-     context['plogin'] = new LoginPage(page),
-     context['ptoast'] = new Toast(page),
-     context['pmovies'] = new MoviesPage(page)
-    await use(context)
-  }
-})
+  landing: async ({ page }, use) => {
+    await use(new LandingPage(page));
+  },
+  login: async ({ page }, use) => {
+    await use(new LoginPage(page));
+  },
+  toast: async ({ page }, use) => {
+    await use(new Toast(page));
+  },
+  movies: async ({ page }, use) => {
+    await use(new MoviesPage(page));
+  },
+});
 
-export { test }
+export { test };
