@@ -1,4 +1,4 @@
-![poster](https://raw.githubusercontent.com/qaxperience/thumbnails/main/playwright-zombie.png)
+![poster](./.github/img/Zombie_Background.png)
 
 ##  About
 
