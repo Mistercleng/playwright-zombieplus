@@ -1,0 +1,22 @@
+import { Pool } from 'pg'
+
+const DbConfig = {
+    user: 'postgres',
+    host: 'localhost',
+    database: 'dbname',
+    password: '1234',
+    port: 5432
+}
+
+export async function executeSQL(sqlScript){
+
+    try{
+        const pool = new Pool(DbConfig)
+        const client = await pool.connect()
+        const result = await client.query(sqlScript)
+        console.log(result.rows)
+    }catch(error){
+        console.log('Error ao executar o SQL '+ error)
+    }
+
+}
