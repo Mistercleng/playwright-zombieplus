@@ -5,11 +5,14 @@ import { Login } from './actions/Login';
 import { Toast } from './actions/Components';
 import { Movies } from './actions/Movies';
 
+import { Api} from './api'
+
 type PlayFixtures = {
   leads: Leads;
   login: Login;
   toast: Toast;
   movies: Movies;
+  api: Api
 };
 
 // Define fixtures separately instead of mutating `page`
@@ -26,6 +29,11 @@ const test = base.extend<PlayFixtures>({
   movies: async ({ page }, use) => {
     await use(new Movies(page));
   },
+  api: async({request},use) => {
+    const api = new Api(request)
+    await api.setToken()
+    await use(api)
+  }
 });
 
 export { test };

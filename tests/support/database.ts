@@ -3,8 +3,8 @@ import { Pool } from 'pg'
 const DbConfig = {
     user: 'postgres',
     host: 'localhost',
-    database: 'dbname',
-    password: '1234',
+    database: 'zombieplus',
+    password: 'pwd123',
     port: 5432
 }
 
