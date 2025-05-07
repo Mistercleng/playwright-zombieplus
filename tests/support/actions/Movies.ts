@@ -45,7 +45,22 @@ export class Movies {
 
     }
 
+    async search(target){
+        await this.page.getByPlaceholder('Busque pelo nome').fill(target) 
+    }
+
+    async tableHave(content){
+        const rows = this.page.getByRole('row')
+        await expect(rows).toContainText(content)
+    }
+
     async alertHaveText(target) {
         await expect(this.page.locator('.alert')).toHaveText(target)
+    }
+
+    async remove(title){
+         // await page.click(`//td[text()='${movie.title}']/..//button`)
+        await this.page.getByRole('row',{name: title}).getByRole('button').click()
+        await this.page.click('.confirm-removal')
     }
 }

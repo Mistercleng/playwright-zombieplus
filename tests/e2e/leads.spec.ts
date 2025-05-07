@@ -2,18 +2,18 @@ import { faker } from '@faker-js/faker'
 import { test } from '../support';
 import { expect } from '@playwright/test';
 
-test('should add a lead to the waitlist', async ({ page , leads, toast}) => {
+test('should add a lead to the waitlist', async ({ page , leads, popup}) => {
   const randopmName = faker.person.fullName()
   const randomEmail = faker.internet.email()
   await leads.visit()
   await leads.openLeadModal()
   await leads.submitLeadForm(randopmName, randomEmail)
-  const message = "Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato!"
-  await toast.haveText(message)
+  const message = "Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato."
+  await popup.haveText(message)
 
 });
 
-test('should not add a lead to the waitlist whe the email already exist', async ({ page, request, leads, toast }) => {
+test('should not add a lead to the waitlist whe the email already exist', async ({ page, request, leads, popup }) => {
   const randopmName = faker.person.fullName()
   const randomEmail = faker.internet.email()
 
@@ -29,8 +29,8 @@ test('should not add a lead to the waitlist whe the email already exist', async 
   await leads.visit()
   await leads.openLeadModal()
   await leads.submitLeadForm(randopmName, randomEmail)
-  const message = "O endereço de e-mail fornecido já está registrado em nossa fila de espera."
-  await toast.haveText(message)
+  const message = "Verificamos que o endereço de e-mail fornecido já consta em nossa lista de espera. Isso significa que você está um passo mais perto de aproveitar nossos serviços."
+  await popup.haveText(message)
 
 });
 

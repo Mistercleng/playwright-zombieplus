@@ -9,12 +9,13 @@ export class Login {
 
     async do(email,password,username){
         this.visit()
+        await this.page.waitForLoadState('networkidle')
         this.submit(email,password)
         this.isLoggedIn(username)
     }
 
     async visit(){
-        await this.page.goto('http://localhost:3000/admin/login')
+        await this.page.goto('/admin/login')
     
         const loginForm = this.page.locator('.login-form')
         await expect(loginForm).toBeVisible() 
@@ -33,6 +34,6 @@ export class Login {
 
     async isLoggedIn(usename) {
         const loggedUser = this.page.locator('.logged-user')
-        await expect(loggedUser).toHaveText(`Olá, ${usename}`)
+        await expect(loggedUser).toHaveText(`Olá, ${usename}`,{timeout:5000})
     }
 }

@@ -1,16 +1,20 @@
 import { expect } from "@playwright/test";
 import { APIRequestContext } from '@playwright/test';
+import dotenv from 'dotenv'
+
+dotenv.config();
 
 
 export class Api {
     [x: string]: any;
     constructor(private request: APIRequestContext) {
+        this.baseApi = process.env.BASE_API
         this.request = request
         this.token = undefined
     }
 
     async setToken() {
-        const response = await this.request.post('http://localhost:3333/sessions', {
+        const response = await this.request.post(this.baseApi + '/sessions', {
             data: {
                 email: 'admin@zombieplus.com',
                 password: 'pwd123'
@@ -18,18 +22,13 @@ export class Api {
         })
 
         expect(response.ok()).toBeTruthy()
-
         const body = JSON.parse(await response.text())
-        console.log(this.body)
-        
         this.token = 'Bearer ' + body.token
-        console.log(this.token)
-
     }
 
     async postMovie(movie) {
         const companyId = await this.getCompanyByName(movie.company)
-        const response = await this.request.post('http://localhost:3333/movies', {
+        const response = await this.request.post(this.baseApi + '/movies', {
             headers: {
                 Authorization: this.token,
                 ContentType: 'multipart/form-data',
@@ -47,7 +46,7 @@ export class Api {
     }
 
     async getCompanyByName(companyName){
-        const response = await this.request.get('http://localhost:3333/companies', {
+        const response = await this.request.get(this.baseApi + '/companies', {
             headers: {
                 Authorization: this.token
             },

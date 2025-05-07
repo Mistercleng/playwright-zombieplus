@@ -2,7 +2,7 @@ import { test as base, Page } from '@playwright/test';
 
 import { Leads } from './actions/Leads';
 import { Login } from './actions/Login';
-import { Toast } from './actions/Components';
+import { Popup } from './actions/Components';
 import { Movies } from './actions/Movies';
 
 import { Api} from './api'
@@ -10,7 +10,7 @@ import { Api} from './api'
 type PlayFixtures = {
   leads: Leads;
   login: Login;
-  toast: Toast;
+  popup: Popup;
   movies: Movies;
   api: Api
 };
@@ -23,8 +23,8 @@ const test = base.extend<PlayFixtures>({
   login: async ({ page }, use) => {
     await use(new Login(page));
   },
-  toast: async ({ page }, use) => {
-    await use(new Toast(page));
+  popup: async ({ page }, use) => {
+    await use(new Popup(page));
   },
   movies: async ({ page }, use) => {
     await use(new Movies(page));
